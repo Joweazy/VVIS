@@ -1,0 +1,30 @@
+<div class="flex-container-centered">
+    <img src="dance-skeleton.png">
+    <div class="card text-center mx-3 mt-3">
+        <div class="card-body">
+            <div class="title">V.V.I.S.</div>
+            <div class="title-footer">
+                <span>est. 2018</span>
+                <div class="cube"></div>
+            </div>
+            <p class="card-text mb-5">Welcome to 'Vlak voordat ik sterf (translation: 'Moments Before I Die'), a unique Spotify
+                playlist with over 5000 tracks. Crafted and
+                nurtured since 2018 by a group of four Dutch friends,
+                this playlist is a musical
+                journey filled with the finest gems spanning various genres. Immerse yourself in an eclectic mix of
+                obscure
+                and alternative tracks carefully selected to create an unforgettable auditory experience. Join us on
+                this
+                sonic adventure as we celebrate the beauty of music that transcends the mainstream, making each moment
+                resonate with meaning and emotion.</p>
+            <button class="btn btn-danger me-4" (click)="getCode()">Sign in with Spotify</button>
+            <button class="btn btn-danger" (click)="getToken()">Get Token</button>
+        </div>
+    </div>
+    <img src="dance-skeleton.png">
+</div>
+@if (loggedIn) {
+    <div class="alert alert-success mt-4" role="alert">
+        Successfully retrieved token!
+    </div>
+}

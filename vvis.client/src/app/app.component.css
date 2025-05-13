@@ -1,7 +1,11 @@
 ﻿:host {
     max-width: 1280px;
     padding: 2rem;
-    text-align: center;
+    /* text-align: center; */
+}
+
+.container {
+    padding-top: 70px; /* Add top padding to prevent content from hiding under the navbar */
 }
 
 th, td {

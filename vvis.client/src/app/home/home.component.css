@@ -1,0 +1,39 @@
+.card {
+    border: 1px solid white;
+    border-radius: 0;
+}
+
+.title { 
+    color: red; 
+    font-family: serif; 
+    font-size: 46px;
+    line-height: 100%;
+    margin-top: 4px;
+}
+
+.title-footer {
+    width: 80px;
+    border-top: 3px solid white;
+    font-size: 18px;
+    font-family: serif; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cube {
+    background-color: red;
+    width: 13px;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+img { 
+    height: 320px; 
+}
+
+img:first-of-type {
+    transform: scaleX(-1);
+}

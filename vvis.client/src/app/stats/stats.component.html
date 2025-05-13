@@ -1,0 +1,68 @@
+<ng-container *ngIf="vvisPlaylistItems$ | async as vvis">
+
+    <div class="card col-md-6 mb-3">
+        <div class="row g-0"> 
+            <div class="card-body">
+                <h5 class="card-title text-warning">Total tracks added</h5>
+                <div class="flex-container-centered"
+                    *ngFor="let item of addedByGroups | keyvalue: valueAscOrder; let i = index">
+                    <ng-container *ngIf="i < 4">
+                        <label>{{ item.key == '1194351423' ? 'Joey' : item.key }}</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="4000"
+                                [style.width]="(item.value / 4500) * 100 + '%'">{{item.value}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card col-md-6 mb-3">
+        <div class="row g-0"> 
+            <div class="card-body">
+                <h5 class="card-title text-warning">Most popular artists</h5>
+                <div class="flex-container-centered"
+                    *ngFor="let item of artistGroups | keyvalue: valueAscOrder; let i = index">
+                    <ng-container *ngIf="i < 25">
+                        <label><span class="me-2">{{i + 1}}.</span>{{ item.key }}</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuemin="0" aria-valuemax="35"
+                                [style.width]="(item.value / 35) * 100 + '%'">{{item.value}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-md-8">
+        <div class="row g-0"> 
+            <div class="card-body">
+                <h5 class="card-title text-warning">Most popular albums</h5>
+                <p-table [value]="topAlbums" [columns]="albumColumns"[tableStyle]="{'min-width': '50rem'}"
+                    >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th></th>
+                        <th *ngFor="let col of columns">
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+                    <tr>
+                        <td>{{index + 1}}</td>
+                        <td *ngFor="let col of columns">
+                            <img *ngIf="col.field === 'image'" [src]="rowData[col.field]">
+                            <ng-container *ngIf="col.field !== 'image'">
+                                {{rowData[col.field]}}
+                            </ng-container>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+        </div>
+    </div>
+    
+</ng-container>

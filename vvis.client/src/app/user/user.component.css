@@ -1,0 +1,13 @@
+.card {
+    width: 500px;
+}
+
+label {
+    width: 100px;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}

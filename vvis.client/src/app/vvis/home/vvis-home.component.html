@@ -1,0 +1,53 @@
+<div *ngIf="vvisPlaylist$ | async as vvis">
+    <div class="card mb-2" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img [src]="vvis.images[0].url" class="img-fluid rounded-start">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{vvis.name}}</h5>
+                    <p class="card-text"><small class="text-muted">{{vvis.tracks.total}} tracks</small></p>
+                    <a [href]="playlistUrl" class="card-link" target="_blank" title="Open in Spotify"><i class="bi bi-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="vvisTracks$ | async as tracks; else loading;">
+    <p-table [value]="tracks" [columns]="cols" [reorderableColumns]="true" [tableStyle]="{'min-width': '50rem'}"
+        [scrollable]="true" scrollHeight="calc(100vh - 150px)" [virtualScroll]="true" [virtualScrollItemSize]="50">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th style="width:3rem"></th>
+                <th *ngFor="let col of columns" pReorderableColumn [pSortableColumn]="col.field !== 'image' ? col.field : null">
+                    {{col.header}}
+                    <p-sortIcon *ngIf="col.field !== 'image'" [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+            <tr [pReorderableRow]="index">
+                <td>
+                    <span class="pi pi-bars" pReorderableRowHandle></span>
+                </td>
+                <td *ngFor="let col of columns">
+                    <img *ngIf="col.field === 'image'" [src]="rowData[col.field]">
+                    <ng-container *ngIf="col.field !== 'image'">
+                        {{rowData[col.field]}}
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- TODO move to separate component and add to stats component -->
+<ng-template #loading>
+    <h5 class=" mt-5 text-center">Loading tracks...</h5>
+    <div class="progress" *ngIf="loadPercentage$ | async as percentage">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
+        aria-valuemin="0" aria-valuemax="100" [style.width]="percentage + '%'"></div>
+    </div>
+</ng-template>

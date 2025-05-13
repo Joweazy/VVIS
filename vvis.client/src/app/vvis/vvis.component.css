@@ -1,0 +1,19 @@
+.nav-link {
+    color: #DCD9CD;
+    
+    &.active {
+        background-color: #c42b3d;
+    }
+}
+
+.nav-first {
+    margin-right: auto;
+}
+
+.nav-label {
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}

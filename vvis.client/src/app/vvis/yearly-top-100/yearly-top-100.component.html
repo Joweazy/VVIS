@@ -1,0 +1,37 @@
+<div class="top-100-header">
+    <div class="top-100-title">
+        <h2>Top 100 {{year}}</h2>
+    </div>
+    <div class="card info-card">
+        <i class="card-body">These top 100 lists were assembled by the four of us each submitting our top 25 tracks that were added to the playlist in that year. 
+            If you see less then 100 tracks it means some tracks were submitted by multiple people. The tracks are in random order.
+        </i>
+    </div>
+</div>
+
+
+<div *ngIf="playlist$ | async as playlist">
+    <a [href]="playlistUrl" class="card-link" target="_blank" title="Open in Spotify"><i class="bi bi-spotify"></i></a>
+    <p-table [value]="playlist" [columns]="cols" [reorderableColumns]="true" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th></th>
+                <th *ngFor="let col of columns" pReorderableColumn [pSortableColumn]="col.field !== 'image' ? col.field : null">
+                    {{col.header}}
+                    <p-sortIcon *ngIf="col.field !== 'image'" [field]="col.field"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+            <tr [pReorderableRow]="index">
+                <td>{{index + 1}}</td>
+                <td *ngFor="let col of columns">
+                    <img *ngIf="col.field === 'image'" [src]="rowData[col.field]">
+                    <ng-container *ngIf="col.field !== 'image'">
+                        {{rowData[col.field]}}
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

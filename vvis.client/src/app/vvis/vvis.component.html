@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs justify-content-end mb-3">
+  <li class="nav-item nav-first">
+    <a class="nav-link" routerLink="home">VVIS Home</a>
+  </li>
+  <li class="nav-item nav-label text-warning">
+    <span>Top 100s:</span>
+  </li>
+  <li class="nav-item" *ngFor="let year of top100Years">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="year.toString()">{{year}}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLinkActive="active" routerLink="alltime2021">All Time (2021)</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
+
+
+
