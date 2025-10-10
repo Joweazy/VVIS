@@ -9,21 +9,23 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth: AuthenticationService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (req.url === 'https://accounts.spotify.com/api/token') {
+    // Don't intercept Spotify OAuth token requests or our backend token endpoint
+    if (req.url === 'https://accounts.spotify.com/api/token' || req.url.includes('/api/spotifyauth/token')) {
         return next.handle(req);
     }
 
     const authToken = this.auth.getAccessTokenFromStorage();
     
-    // // todo refresh token! store expire date?
-    // if (!authToken) {
-    //     return this.auth.getAccessToken().pipe(
-    //         switchMap(newToken => {
-    //             const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + newToken } });
-    //             return next.handle(authReq);
-    //         })
-    //     );
-    // }
+    
+    // Auto-refresh token if not available
+    if (!authToken) {
+        return this.auth.getClientCredentialsToken().pipe(
+            switchMap(result => {
+                const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + result.access_token } });
+                return next.handle(authReq);
+            })
+        );
+    }
 
     const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + authToken } });
     return next.handle(authReq);

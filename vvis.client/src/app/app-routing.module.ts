@@ -6,7 +6,8 @@ const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'user', loadComponent: () => import('./user/user.component').then(mod => mod.UserComponent) },
       { path: 'vvis', loadChildren: () => import('./vvis/routes')},
-      { path: 'stats', loadComponent: () => import('./stats/stats.component').then(mod => mod.StatsComponent) }
+      { path: 'stats', loadComponent: () => import('./stats/stats.component').then(mod => mod.StatsComponent) },
+      { path: 'concerts', loadComponent: () => import('./concerts/concerts.component').then(mod => mod.ConcertsComponent) }
     ];
 
 @NgModule({

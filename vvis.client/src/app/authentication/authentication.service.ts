@@ -8,9 +8,21 @@ import { AccessTokenResult } from './access-token-response';
 })
 export class AuthenticationService {
   private redirectUri = 'https://localhost:4200';
-  private clientId = '0b55efbf92fb4d8cb2b0aaa30b0d0749'; // todo Move to Server config!
+  private clientId = 'CLIENT_ID';
 
   constructor(private httpClient: HttpClient) {}
+
+  public getClientCredentialsToken(): Observable<AccessTokenResult> {
+    // Call YOUR backend API instead of Spotify directly
+    return this.httpClient.post<AccessTokenResult>('/api/spotifyauth/token', {})
+      .pipe(
+        tap((result) => {
+          if (result) {
+            window.localStorage.setItem('access_token', result.access_token);
+          }
+        })
+      );
+  }
 
   // More info: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
   public async redirectToAuthCodeFlow() {
@@ -38,7 +50,7 @@ export class AuthenticationService {
   }
 
   // Retrieves access token, which is valid for 1 hour
-  public getAccessToken(): Observable<AccessTokenResult> {
+  public getAuthCodeAccessToken(): Observable<AccessTokenResult> {
     const codeVerifier = window.localStorage.getItem('code_verifier') as string;
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
