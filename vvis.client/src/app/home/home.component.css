@@ -2,14 +2,24 @@
     border: 1px solid white;
     border-radius: 0;
     max-width: 680px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, rgba(22, 29, 33, 0.95) 0%, rgba(22, 29, 33, 0.98) 100%);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(196, 43, 61, 0.4);
 }
 
 .title { 
-    color: red; 
+    color: #c42b3d; 
     font-family: serif; 
     font-size: 46px;
     line-height: 100%;
     margin-top: 4px;
+    text-shadow: 2px 2px 8px rgba(196, 43, 61, 0.3);
+    animation: fadeInDown 0.8s ease-out;
 }
 
 .title-footer {
@@ -19,20 +29,100 @@
     font-family: serif; 
     margin-left: auto;
     margin-right: auto;
+    animation: fadeIn 1s ease-out 0.3s both;
 }
 
 .cube {
-    background-color: red;
+    background-color: #c42b3d;
     width: 13px;
     height: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
     margin-bottom: 12px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card-text {
+    animation: fadeIn 1s ease-out 0.5s both;
+    line-height: 1.7;
+}
+
+.btn-danger {
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 12px 32px;
+    box-shadow: 0 4px 12px rgba(196, 43, 61, 0.3);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196, 43, 61, 0.5);
 }
 
 img:first-of-type {
     transform: scaleX(-1);
+    animation: slideInLeft 0.8s ease-out;
+}
+
+img:last-of-type {
+    animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: scaleX(-1) translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: scaleX(-1) translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* Mobile responsive styles */

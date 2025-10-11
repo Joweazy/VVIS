@@ -15,6 +15,8 @@ a.navbar-brand {
   word-break: break-all;
   gap: 12px;
   text-decoration: none;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .navbar-logo {
@@ -24,6 +26,7 @@ a.navbar-brand {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
+  flex-shrink: 0;
 }
 
 .brand-text {
@@ -32,6 +35,27 @@ a.navbar-brand {
   font-weight: 600;
   letter-spacing: -0.5px;
   color: white;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 575px) {
+  .navbar-logo {
+    height: 32px;
+    width: 32px;
+  }
+
+  .brand-text {
+    font-size: 1.1rem;
+    letter-spacing: -0.3px;
+  }
+
+  a.navbar-brand {
+    gap: 8px;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+  }
 }
 
 .nav-link {
