@@ -23,7 +23,15 @@ export class StatsComponent {
     this.vvisPlaylistItems$ = this.spotifyService.vvisPlaylist$.pipe(
       tap((items) => {
         this.addedByGroups = this.getAddedByGroups(items);  
-        this.artistGroups = this.getArtistGroups(items.map(i => i.track));
+        
+        const allArtistGroups = this.getArtistGroups(items.map(i => i.track));
+        this.artistGroups = Object.entries(allArtistGroups)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 25)
+          .reduce((acc, [name, count]) => {
+            acc[name] = count;
+            return acc;
+          }, {} as { [name: string]: number });
 
         const albumGroups = this.getAlbumGroups(items.map(i => i.track));
         this.topAlbums = Object.values(albumGroups)

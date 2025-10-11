@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { Observable, map, switchMap } from 'rxjs';
@@ -11,7 +11,8 @@ import { SpotifyService } from '../../services/spotify.service';
   standalone: true,
   imports: [CommonModule, TableModule],
   templateUrl: './yearly-top-100.component.html',
-  styleUrls: ['./yearly-top-100.component.css']
+  styleUrls: ['./yearly-top-100.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YearlyTop100Component {
   public cols!: any[];

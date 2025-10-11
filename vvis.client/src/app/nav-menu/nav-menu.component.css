@@ -6,12 +6,39 @@
   right: 0;
   width: 100%;
   z-index: 1000;
+  padding: 0.75rem 0;
 }
 
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.brand-text {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: white;
+}
+
+.nav-link {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 html {
