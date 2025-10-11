@@ -19,9 +19,20 @@ export class AuthenticationService {
         tap((result) => {
           if (result) {
             window.localStorage.setItem('access_token', result.access_token);
+            // Store expiration timestamp (current time + expires_in seconds, minus 60s buffer)
+            const expiresAt = Date.now() + (result.expires_in - 60) * 1000;
+            window.localStorage.setItem('client_token_expires_at', expiresAt.toString());
           }
         })
       );
+  }
+
+  public isClientCredentialsTokenExpired(): boolean {
+    const expiresAt = window.localStorage.getItem('client_token_expires_at');
+    if (!expiresAt) {
+      return true; // If no expiration time is stored, consider it expired
+    }
+    return Date.now() >= parseInt(expiresAt, 10);
   }
 
   // More info: https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow

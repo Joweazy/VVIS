@@ -15,10 +15,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     const authToken = this.auth.getAccessTokenFromStorage();
-    
-    
-    // Auto-refresh token if not available
-    if (!authToken) {
+
+    // If no token exists or the client credentials token is expired, get a new one
+    if (!authToken || this.auth.isClientCredentialsTokenExpired()) {
         return this.auth.getClientCredentialsToken().pipe(
             switchMap(result => {
                 const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + result.access_token } });
