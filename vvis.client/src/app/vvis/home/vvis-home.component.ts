@@ -36,6 +36,7 @@ export class VvisHomeComponent implements OnInit {
             album: i.track.album.name,
             addedBy: i.added_by.id == '1194351423' ? 'Joey' : i.added_by.id,
             addedAt: new Date(i.added_at),
+            spotifyUrl: i.track.external_urls.spotify
             //addedAt: i.added_at
             //popularity: i.track.popularity
           }
@@ -54,5 +55,9 @@ export class VvisHomeComponent implements OnInit {
       { field: 'addedBy', header: 'Added by', class: 'added-by-column hide-tablet' },
       { field: 'addedAt', header: 'Added at', class: 'added-at-column hide-tablet' }
     ];
+  }
+
+  openSpotifyUrl(url: string): void {
+    window.open(url, '_blank');
   }
 }

@@ -25,25 +25,25 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link" [routerLink]="['/']">Home</a>
+            <a class="nav-link" [routerLink]="['/']" (click)="collapse()">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['vvis']"
+            <a class="nav-link" [routerLink]="['vvis']" (click)="collapse()"
               >Playlist</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['top100s']"
+            <a class="nav-link" [routerLink]="['top100s']" (click)="collapse()"
               >Top 100s</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['stats']"
+            <a class="nav-link" [routerLink]="['stats']" (click)="collapse()"
               >Stats</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link" [routerLink]="['concerts']"
+            <a class="nav-link" [routerLink]="['concerts']" (click)="collapse()"
               >Concerts</a
             >
           </li>

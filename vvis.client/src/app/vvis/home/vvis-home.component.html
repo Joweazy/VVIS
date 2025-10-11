@@ -33,7 +33,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-            <tr [pReorderableRow]="index" class="table-row">
+            <tr [pReorderableRow]="index" class="table-row" (click)="openSpotifyUrl(rowData.spotifyUrl)" style="cursor: pointer;">
                 <td class="drag-handle-cell">
                     <span class="pi pi-bars drag-handle" pReorderableRowHandle></span>
                 </td>

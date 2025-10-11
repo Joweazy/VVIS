@@ -31,7 +31,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-            <tr [pReorderableRow]="index" class="table-row">
+            <tr [pReorderableRow]="index" class="table-row" (click)="openSpotifyUrl(rowData.spotifyUrl)" style="cursor: pointer;">
                 <td class="rank-cell">{{index + 1}}</td>
                 <td *ngFor="let col of columns" [ngClass]="col.class">
                     <img *ngIf="col.field === 'image'" [src]="rowData[col.field]" class="album-image" alt="Album cover">

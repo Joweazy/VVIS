@@ -38,6 +38,7 @@ export class YearlyTop100Component {
                 name: i.track.name,
                 artist: i.track.artists.map((a) => a.name).toString(),
                 album: i.track.album.name,
+                spotifyUrl: i.track.external_urls.spotify
               };
             });
           })
@@ -70,6 +71,10 @@ export class YearlyTop100Component {
       default:
         return '';
     }  
+  }
+
+  openSpotifyUrl(url: string): void {
+    window.open(url, '_blank');
   }
 }
 
