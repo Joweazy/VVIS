@@ -3,6 +3,12 @@
     margin-left: 12px;
 }
 
+.flex-container-centered {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 label { 
     min-width: 200px;
     font-size: 13px;
@@ -127,6 +133,25 @@ label {
 
 /* Responsive Breakpoints */
 @media screen and (max-width: 768px) {
+    /* Progress bar cards */
+    label {
+        min-width: 120px;
+        font-size: 12px;
+    }
+
+    .progress {
+        margin-left: 8px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .flex-container-centered {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Table styling */
     .album-image {
         width: 40px;
         height: 40px;
@@ -144,6 +169,36 @@ label {
 }
 
 @media screen and (max-width: 576px) {
+    /* Progress bar cards - mobile optimization */
+    label {
+        min-width: 80px;
+        font-size: 11px;
+    }
+
+    .progress {
+        margin-left: 6px;
+        height: 20px;
+    }
+
+    .progress-bar {
+        font-size: 11px;
+        line-height: 20px;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .flex-container-centered {
+        margin-bottom: 0.4rem;
+    }
+
+    /* Table styling */
     .album-image {
         width: 35px;
         height: 35px;
