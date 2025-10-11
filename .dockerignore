@@ -1,0 +1,16 @@
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/node_modules
+**/dist
+**/.git
+**/.gitignore
+**/.dockerignore
+**/Dockerfile
+**/*.md
+**/npm-debug.log
+**/.angular
+**/coverage
+**/.nyc_output
+**/*.log
