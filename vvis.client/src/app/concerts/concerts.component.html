@@ -1,1 +1,67 @@
-<p>Under construction</p>
+<div class="concerts-container">
+  <header class="concerts-header">
+    <h1>Concert History</h1>
+    <p class="subtitle">A journey through live music experiences</p>
+    
+    <div class="intro-text">
+      <p>
+        While we love analyzing our Spotify stats and discovering new artists through streaming, 
+        nothing quite compares to the magic of live music. There's something special about being 
+        in a crowd, feeling the bass reverberate through your chest, and witnessing artists bring 
+        their songs to life on stage. This is a collection of concerts we've attended and the 
+        shows we're eagerly anticipating—each one a unique experience and memory in our musical journey.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-number">{{ totalConcerts }}</span>
+        <span class="stat-label">Total Shows</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{ upcomingConcerts.length }}</span>
+        <span class="stat-label">Upcoming</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">{{ pastConcerts.length }}</span>
+        <span class="stat-label">Past Shows</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Upcoming Concerts Section -->
+  <section class="concerts-section" *ngIf="upcomingConcerts.length > 0">
+    <h2>🎸 Upcoming Shows</h2>
+    <div class="concerts-grid">
+      <div class="concert-card upcoming" *ngFor="let concert of upcomingConcerts">
+        <div class="concert-date">
+          <span class="date-day">{{ concert.date | date: 'dd' }}</span>
+          <span class="date-month">{{ concert.date | date: 'MMM' }}</span>
+          <span class="date-year">{{ concert.date | date: 'yyyy' }}</span>
+        </div>
+        <div class="concert-info">
+          <h3 class="artist-name">{{ concert.artist }}</h3>
+          <p class="venue-name">📍 {{ concert.venue }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Past Concerts Section -->
+  <section class="concerts-section">
+    <h2>🎵 Past Shows</h2>
+    <div class="concerts-grid">
+      <div class="concert-card past" *ngFor="let concert of pastConcerts">
+        <div class="concert-date">
+          <span class="date-day">{{ concert.date | date: 'dd' }}</span>
+          <span class="date-month">{{ concert.date | date: 'MMM' }}</span>
+          <span class="date-year">{{ concert.date | date: 'yyyy' }}</span>
+        </div>
+        <div class="concert-info">
+          <h3 class="artist-name">{{ concert.artist }}</h3>
+          <p class="venue-name">📍 {{ concert.venue }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

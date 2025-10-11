@@ -1,6 +1,7 @@
 .card {
     border: 1px solid white;
     border-radius: 0;
+    max-width: 680px;
 }
 
 .title { 
@@ -32,4 +33,49 @@
 
 img:first-of-type {
     transform: scaleX(-1);
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .flex-container-centered img {
+        display: none;
+    }
+
+    .card {
+        margin: 1rem !important;
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .title-footer {
+        width: 70px;
+        font-size: 16px;
+    }
+
+    .card-text {
+        font-size: 14px;
+        margin-bottom: 2rem !important;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        margin: 0.5rem !important;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .card-text {
+        font-size: 13px;
+    }
 }

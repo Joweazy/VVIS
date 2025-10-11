@@ -1,6 +1,11 @@
 <div class="top-100-header">
     <div class="top-100-title">
         <h2>Top 100 {{year}}</h2>
+        <div class="spotify-link-wrapper">
+            <a [href]="playlistUrl" class="spotify-btn" target="_blank" title="Open in Spotify">
+                <i class="bi bi-spotify me-1"></i>Open in Spotify
+            </a>
+        </div>
     </div>
     <div class="card info-card">
         <i class="card-body">These top 100 lists were assembled by the four of us each submitting our top 25 tracks that were added to the playlist in that year. 
@@ -11,11 +16,6 @@
 
 
 <div *ngIf="playlist$ | async as playlist" class="table-container">
-    <div class="spotify-link-wrapper">
-        <a [href]="playlistUrl" class="spotify-btn" target="_blank" title="Open in Spotify">
-            <i class="bi bi-spotify me-1"></i>Open in Spotify
-        </a>
-    </div>
     <p-table [value]="playlist" [columns]="cols" [reorderableColumns]="true"
         [scrollable]="true" scrollHeight="calc(100vh - 350px)" [virtualScroll]="true" [virtualScrollItemSize]="50"
         styleClass="p-datatable-striped p-datatable-gridlines" [responsiveLayout]="'scroll'">
