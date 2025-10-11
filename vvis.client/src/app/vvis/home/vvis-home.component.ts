@@ -35,8 +35,8 @@ export class VvisHomeComponent implements OnInit {
             artist: i.track.artists.map(a => a.name),
             album: i.track.album.name,
             addedBy: i.added_by.id == '1194351423' ? 'Joey' : i.added_by.id,
-            //addedAt: new Date(i.added_at).toLocaleDateString(),
-            addedAt: i.added_at
+            addedAt: new Date(i.added_at),
+            //addedAt: i.added_at
             //popularity: i.track.popularity
           }
         }))
@@ -46,13 +46,13 @@ export class VvisHomeComponent implements OnInit {
   ngOnInit() {
 
     this.cols = [
-      { field: 'image' },
-      { field: 'name', header: 'Title' },
-      { field: 'artist', header: 'Artist' },
-      { field: 'album', header: 'Album' },
+      { field: 'image', header: '', class: 'image-column' },
+      { field: 'name', header: 'Title', class: 'title-column' },
+      { field: 'artist', header: 'Artist', class: 'artist-column' },
+      { field: 'album', header: 'Album', class: 'album-column hide-mobile' },
       //{ field: 'popularity', header: 'Popularity' },
-      { field: 'addedBy', header: 'Added by' },
-      { field: 'addedAt', header: 'Added at' }
+      { field: 'addedBy', header: 'Added by', class: 'added-by-column hide-tablet' },
+      { field: 'addedAt', header: 'Added at', class: 'added-at-column hide-tablet' }
     ];
   }
 }

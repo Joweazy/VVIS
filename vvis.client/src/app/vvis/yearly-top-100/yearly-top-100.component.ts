@@ -46,10 +46,10 @@ export class YearlyTop100Component {
     );
 
     this.cols = [
-      { field: 'image' },
-      { field: 'name', header: 'Title' },
-      { field: 'artist', header: 'Artist' },
-      { field: 'album', header: 'Album' }
+      { field: 'image', header: '', class: 'image-column' },
+      { field: 'name', header: 'Title', class: 'title-column' },
+      { field: 'artist', header: 'Artist', class: 'artist-column' },
+      { field: 'album', header: 'Album', class: 'album-column hide-mobile' }
   ];
   }
 

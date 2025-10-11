@@ -30,10 +30,6 @@
     margin-bottom: 12px;
 }
 
-img { 
-    height: 320px; 
-}
-
 img:first-of-type {
     transform: scaleX(-1);
 }

@@ -10,25 +10,33 @@
 </div>
 
 
-<div *ngIf="playlist$ | async as playlist">
-    <a [href]="playlistUrl" class="card-link" target="_blank" title="Open in Spotify"><i class="bi bi-spotify"></i></a>
-    <p-table [value]="playlist" [columns]="cols" [reorderableColumns]="true" [tableStyle]="{'min-width': '50rem'}">
+<div *ngIf="playlist$ | async as playlist" class="table-container">
+    <div class="spotify-link-wrapper">
+        <a [href]="playlistUrl" class="spotify-btn" target="_blank" title="Open in Spotify">
+            <i class="bi bi-spotify me-1"></i>Open in Spotify
+        </a>
+    </div>
+    <p-table [value]="playlist" [columns]="cols" [reorderableColumns]="true"
+        [scrollable]="true" scrollHeight="calc(100vh - 350px)" [virtualScroll]="true" [virtualScrollItemSize]="50"
+        styleClass="p-datatable-striped p-datatable-gridlines" [responsiveLayout]="'scroll'">
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th></th>
-                <th *ngFor="let col of columns" pReorderableColumn [pSortableColumn]="col.field !== 'image' ? col.field : null">
+                <th class="rank-column">#</th>
+                <th *ngFor="let col of columns" pReorderableColumn 
+                    [pSortableColumn]="col.field !== 'image' ? col.field : null"
+                    [ngClass]="col.class">
                     {{col.header}}
                     <p-sortIcon *ngIf="col.field !== 'image'" [field]="col.field"></p-sortIcon>
                 </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-            <tr [pReorderableRow]="index">
-                <td>{{index + 1}}</td>
-                <td *ngFor="let col of columns">
-                    <img *ngIf="col.field === 'image'" [src]="rowData[col.field]">
+            <tr [pReorderableRow]="index" class="table-row">
+                <td class="rank-cell">{{index + 1}}</td>
+                <td *ngFor="let col of columns" [ngClass]="col.class">
+                    <img *ngIf="col.field === 'image'" [src]="rowData[col.field]" class="album-image" alt="Album cover">
                     <ng-container *ngIf="col.field !== 'image'">
-                        {{rowData[col.field]}}
+                        <span class="cell-content">{{rowData[col.field]}}</span>
                     </ng-container>
                 </td>
             </tr>

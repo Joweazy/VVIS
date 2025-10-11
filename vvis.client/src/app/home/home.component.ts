@@ -2,10 +2,12 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Subject, takeUntil } from 'rxjs';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './home.component.html',
   styleUrls: ['home.component.css']
 })

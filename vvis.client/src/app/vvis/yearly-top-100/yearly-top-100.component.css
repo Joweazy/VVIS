@@ -1,7 +1,34 @@
+/* Spotify Button Styling */
+.spotify-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #000000;
+    color: #1DB954;
+    border: 2px solid #1DB954;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.spotify-btn:hover {
+    background-color: #1DB954;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+
+.spotify-btn i {
+    font-size: 1.1rem;
+}
+
 .top-100-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .top-100-title {
@@ -10,12 +37,12 @@
 }
 
 .info-card { 
-    width: 418px;
+    max-width: 500px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card-link {
-    position: absolute;
-    margin-top: -36px;
+.spotify-link-wrapper {
+    margin-bottom: 1rem;
 }
 
 h2 {
@@ -27,4 +54,203 @@ h2 {
 .card-body {
     font-size: 13px;
     color: #DCD9CD;
+}
+
+/* Table Container */
+.table-container {
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Album Image in Table */
+.album-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.album-image:hover {
+    transform: scale(1.1);
+}
+
+/* Rank Column */
+.rank-column {
+    width: 50px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rank-cell {
+    text-align: center;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Column Widths */
+.image-column {
+    width: 80px;
+    text-align: center;
+}
+
+.title-column {
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.artist-column {
+    min-width: 150px;
+    max-width: 250px;
+}
+
+.album-column {
+    min-width: 150px;
+    max-width: 250px;
+}
+
+/* Cell Content */
+.cell-content {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Row Hover Effect */
+::ng-deep .table-row:hover {
+    background-color: rgba(0, 123, 255, 0.05) !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Table Header Styling */
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--surface-ground, #ffffff);
+    color: inherit;
+    font-weight: 600;
+    border-bottom: 2px solid var(--surface-border, #dee2e6);
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Dark theme header background */
+@media (prefers-color-scheme: dark) {
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        background-color: var(--surface-ground, #1e1e1e);
+    }
+}
+
+/* Striped Rows */
+::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background-color: var(--surface-100, rgba(0, 0, 0, 0.05));
+}
+
+/* Sort Icon Styling */
+::ng-deep .p-sortable-column-icon {
+    margin-left: 0.5rem;
+}
+
+/* Better Grid Lines */
+::ng-deep .p-datatable-gridlines .p-datatable-tbody > tr > td {
+    border-color: var(--surface-border, #e9ecef);
+}
+
+::ng-deep .p-datatable-gridlines .p-datatable-thead > tr > th {
+    border-color: var(--surface-border, #e9ecef);
+}
+
+/* Focus States */
+::ng-deep .p-datatable .p-datatable-tbody > tr:focus {
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
+
+/* Custom Scrollbar for Table */
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 992px) {
+    .top-100-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .info-card {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hide-mobile {
+        display: none !important;
+    }
+
+    .album-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .title-column,
+    .artist-column {
+        min-width: 120px;
+    }
+
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.6rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .album-image {
+        width: 35px;
+        height: 35px;
+    }
+
+    .rank-column {
+        width: 40px;
+    }
+
+    .title-column,
+    .artist-column {
+        min-width: 100px;
+    }
+
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.4rem 0.25rem;
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        font-size: 12px;
+    }
 }

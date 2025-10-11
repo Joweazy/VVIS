@@ -8,7 +8,154 @@ label {
     font-size: 13px;
 }
 
-td img {
-    width: 24px;
-    height: 24px;
+/* Album Image in Table */
+.album-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.album-image:hover {
+    transform: scale(1.1);
+}
+
+/* Rank Column */
+.rank-column {
+    width: 50px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.rank-cell {
+    text-align: center;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Column Widths */
+.image-column {
+    width: 80px;
+    text-align: center;
+}
+
+.title-column {
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.artist-column {
+    min-width: 150px;
+    max-width: 250px;
+}
+
+.count-column {
+    width: 100px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Cell Content */
+.cell-content {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Row Hover Effect */
+::ng-deep .table-row:hover {
+    background-color: rgba(255, 193, 7, 0.1) !important;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Table Header Styling */
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--surface-ground, #ffffff);
+    color: inherit;
+    font-weight: 600;
+    border-bottom: 2px solid var(--surface-border, #dee2e6);
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Dark theme header background */
+@media (prefers-color-scheme: dark) {
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        background-color: var(--surface-ground, #1e1e1e);
+    }
+}
+
+/* Striped Rows */
+::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+    background-color: var(--surface-100, rgba(0, 0, 0, 0.05));
+}
+
+/* Custom Scrollbar for Table */
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Better Grid Lines */
+::ng-deep .p-datatable-gridlines .p-datatable-tbody > tr > td {
+    border-color: var(--surface-border, #e9ecef);
+}
+
+::ng-deep .p-datatable-gridlines .p-datatable-thead > tr > th {
+    border-color: var(--surface-border, #e9ecef);
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 768px) {
+    .album-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .title-column,
+    .artist-column {
+        min-width: 120px;
+    }
+    
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.6rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .album-image {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .rank-column {
+        width: 40px;
+    }
+    
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        padding: 0.4rem 0.25rem;
+        font-size: 0.9rem;
+    }
 }

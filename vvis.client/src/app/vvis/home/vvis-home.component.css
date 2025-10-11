@@ -1,0 +1,276 @@
+/* Spotify Button Styling */
+.spotify-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #000000;
+  color: #1DB954;
+  border: 2px solid #1DB954;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.spotify-btn:hover {
+  background-color: #1DB954;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
+}
+
+.spotify-btn i {
+  font-size: 1.1rem;
+}
+
+/* Playlist Card Styling */
+.playlist-card {
+  max-width: 700px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.playlist-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.playlist-image {
+  object-fit: cover;
+  height: 100%;
+  min-height: 150px;
+}
+
+/* Table Container */
+.table-container {
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Album Image in Table */
+.album-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.album-image:hover {
+  transform: scale(1.1);
+}
+
+/* Drag Handle Styling */
+.drag-handle-column {
+  width: 3rem;
+  text-align: center;
+}
+
+.drag-handle-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.drag-handle {
+  cursor: move;
+  color: #6c757d;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.drag-handle:hover {
+  color: #495057;
+}
+
+/* Row Hover Effect */
+::ng-deep .table-row:hover {
+  background-color: rgba(0, 123, 255, 0.05) !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Column Widths */
+.image-column {
+  width: 80px;
+  text-align: center;
+}
+
+.title-column {
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.artist-column {
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.album-column {
+  min-width: 150px;
+  max-width: 250px;
+}
+
+.added-by-column {
+  width: 120px;
+}
+
+.added-at-column {
+  width: 120px;
+}
+
+/* Cell Content */
+.cell-content {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Table Header Styling */
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--surface-ground, #ffffff);
+  color: inherit;
+  font-weight: 600;
+  border-bottom: 2px solid var(--surface-border, #dee2e6);
+  padding: 0.75rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Dark theme header background */
+@media (prefers-color-scheme: dark) {
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--surface-ground, #1e1e1e);
+  }
+}
+
+/* Striped Rows */
+::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background-color: var(--surface-100, rgba(0, 0, 0, 0.05));
+}
+
+/* Sort Icon Styling */
+::ng-deep .p-sortable-column-icon {
+  margin-left: 0.5rem;
+}
+
+/* Loading Progress Bar */
+.progress {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 992px) {
+  .hide-tablet {
+    display: none !important;
+  }
+  
+  .title-column,
+  .artist-column,
+  .album-column {
+    min-width: 120px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .playlist-image {
+    min-height: 120px;
+  }
+  
+  .table-container {
+    margin-top: 0.5rem;
+  }
+  
+  .album-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .title-column,
+  .artist-column {
+    min-width: 100px;
+  }
+  
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+  ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.6rem 0.5rem;
+  }
+  
+  .drag-handle-column {
+    width: 2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .playlist-card {
+    margin-bottom: 1rem;
+  }
+  
+  .playlist-image {
+    min-height: 100px;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .album-image {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .drag-handle {
+    font-size: 1rem;
+  }
+  
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+  ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.4rem 0.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Custom Scrollbar for Table */
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::ng-deep .p-datatable .p-datatable-scrollable-body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Better Grid Lines */
+::ng-deep .p-datatable-gridlines .p-datatable-tbody > tr > td {
+  border-color: var(--surface-border, #e9ecef);
+}
+
+::ng-deep .p-datatable-gridlines .p-datatable-thead > tr > th {
+  border-color: var(--surface-border, #e9ecef);
+}
+
+/* Focus States */
+::ng-deep .p-datatable .p-datatable-tbody > tr:focus {
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}

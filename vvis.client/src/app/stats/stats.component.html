@@ -39,23 +39,24 @@
         <div class="row g-0"> 
             <div class="card-body">
                 <h5 class="card-title text-warning">Most popular albums</h5>
-                <p-table [value]="topAlbums" [columns]="albumColumns"[tableStyle]="{'min-width': '50rem'}"
-                    >
+                <p-table [value]="topAlbums" [columns]="albumColumns"
+                    styleClass="p-datatable-striped p-datatable-gridlines" [responsiveLayout]="'scroll'"
+                    [scrollable]="true" scrollHeight="400px">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th></th>
-                        <th *ngFor="let col of columns">
+                        <th class="rank-column">#</th>
+                        <th *ngFor="let col of columns" [ngClass]="col.class">
                             {{col.header}}
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-                    <tr>
-                        <td>{{index + 1}}</td>
-                        <td *ngFor="let col of columns">
-                            <img *ngIf="col.field === 'image'" [src]="rowData[col.field]">
+                    <tr class="table-row">
+                        <td class="rank-cell">{{index + 1}}</td>
+                        <td *ngFor="let col of columns" [ngClass]="col.class">
+                            <img *ngIf="col.field === 'image'" [src]="rowData[col.field]" class="album-image" alt="Album cover">
                             <ng-container *ngIf="col.field !== 'image'">
-                                {{rowData[col.field]}}
+                                <span class="cell-content">{{rowData[col.field]}}</span>
                             </ng-container>
                         </td>
                     </tr>

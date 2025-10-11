@@ -41,10 +41,10 @@ export class StatsComponent {
     );
 
     this.albumColumns = [
-      { field: 'image' },
-      { field: 'name', header: 'Title' },
-      { field: 'artist', header: 'Artist' },
-      { field: 'count', header: 'Count' }
+      { field: 'image', header: '', class: 'image-column' },
+      { field: 'name', header: 'Title', class: 'title-column' },
+      { field: 'artist', header: 'Artist', class: 'artist-column' },
+      { field: 'count', header: 'Count', class: 'count-column' }
     ];
   }
 
