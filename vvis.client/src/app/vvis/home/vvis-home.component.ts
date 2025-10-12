@@ -36,9 +36,9 @@ export class VvisHomeComponent implements OnInit {
             album: i.track.album.name,
             addedBy: i.added_by.id == '1194351423' ? 'Joey' : i.added_by.id,
             addedAt: new Date(i.added_at),
-            spotifyUrl: i.track.external_urls.spotify
-            //addedAt: i.added_at
-            //popularity: i.track.popularity
+            spotifyUrl: i.track.external_urls.spotify,
+            releaseDate: i.track.album.release_date,
+            popularity: i.track.popularity
           }
         }))
       )
@@ -59,5 +59,65 @@ export class VvisHomeComponent implements OnInit {
 
   openSpotifyUrl(url: string): void {
     window.open(url, '_blank');
+  }
+
+  exportToCSV(tracks: any[]): void {
+    // Prepare CSV headers
+    const headers = ['Title', 'Artist', 'Album', 'Added By', 'Added At', 'Spotify URL'];
+    
+    // Prepare CSV rows
+    const csvRows = tracks.map(track => [
+      this.escapeCSV(track.name),
+      this.escapeCSV(Array.isArray(track.artist) ? track.artist.join(', ') : track.artist),
+      this.escapeCSV(track.album),
+      this.escapeCSV(track.addedBy),
+      track.addedAt.toLocaleDateString('nl-NL'),
+      track.spotifyUrl
+    ]);
+
+    // Combine headers and rows
+    const csvContent = [
+      headers.join(','),
+      ...csvRows.map(row => row.join(','))
+    ].join('\n');
+
+    // Create and download the file
+    this.downloadFile(csvContent, 'vvis-playlist.csv', 'text/csv');
+  }
+
+  exportToJSON(tracks: any[]): void {
+    // Prepare data for JSON export
+    const jsonData = tracks.map(track => ({
+      title: track.name,
+      artist: Array.isArray(track.artist) ? track.artist : [track.artist],
+      album: track.album,
+      addedBy: track.addedBy,
+      addedAt: track.addedAt.toISOString(),
+      popularity: track.popularity,
+      releaseDate: track.releaseDate
+    }));
+
+    const jsonContent = JSON.stringify(jsonData, null, 2);
+    this.downloadFile(jsonContent, 'vvis-playlist.json', 'application/json');
+  }
+
+  private escapeCSV(value: string): string {
+    if (value == null) return '';
+    const stringValue = String(value);
+    // Escape quotes and wrap in quotes if contains comma, quote, or newline
+    if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+      return '"' + stringValue.replace(/"/g, '""') + '"';
+    }
+    return stringValue;
+  }
+
+  private downloadFile(content: string, filename: string, mimeType: string): void {
+    const blob = new Blob([content], { type: mimeType });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    window.URL.revokeObjectURL(url);
   }
 }

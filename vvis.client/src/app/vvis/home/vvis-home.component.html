@@ -18,6 +18,14 @@
 </div>
 
 <div *ngIf="vvisTracks$ | async as tracks; else loading;" class="table-container">
+    <div class="export-controls mb-3">
+        <button class="btn btn-primary me-2" (click)="exportToCSV(tracks)" title="Export to CSV">
+            <i class="bi bi-download me-1"></i>Export CSV
+        </button>
+        <button class="btn btn-secondary" (click)="exportToJSON(tracks)" title="Export to JSON">
+            <i class="bi bi-download me-1"></i>Export JSON
+        </button>
+    </div>
     <p-table [value]="tracks" [columns]="cols" [reorderableColumns]="true" 
         [scrollable]="true" scrollHeight="calc(100vh - 250px)" [virtualScroll]="true" [virtualScrollItemSize]="50"
         styleClass="p-datatable-striped p-datatable-gridlines" [responsiveLayout]="'scroll'">
