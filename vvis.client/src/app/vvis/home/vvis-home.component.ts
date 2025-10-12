@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Table, TableModule } from 'primeng/table';
 import { Observable, map, shareReplay } from 'rxjs';
 
 import { SpotifyService } from '../../services/spotify.service';
@@ -14,10 +14,13 @@ import { Playlist } from '../../models/playlist';
   styleUrls: ['./vvis-home.component.css']
 })
 export class VvisHomeComponent implements OnInit {
+  @ViewChild('dt') table!: Table;
+  
   public cols!: any[];
   public vvisPlaylist$: Observable<Playlist>
   public vvisTracks$: Observable<any[]>; // todo type
   public loadPercentage$: Observable<number>;
+  public dateSortOrder: number = 1; // -1 for descending (newest first), 1 for ascending
 
   private readonly vvisId = '64ObqvLOx3QAD7ULcV7yAa';
   public playlistUrl = 'https://open.spotify.com/playlist/' + this.vvisId;
@@ -119,5 +122,17 @@ export class VvisHomeComponent implements OnInit {
     link.download = filename;
     link.click();
     window.URL.revokeObjectURL(url);
+  }
+
+  toggleDateSort(): void {
+    // Toggle between ascending (1) and descending (-1)
+    this.dateSortOrder = this.dateSortOrder === 1 ? -1 : 1;
+    
+    // Apply sort to the table
+    if (this.table) {
+      this.table.sortField = 'addedAt';
+      this.table.sortOrder = this.dateSortOrder;
+      this.table.sortSingle();
+    }
   }
 }

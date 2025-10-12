@@ -6,6 +6,7 @@ export interface Concert {
 
 export const CONCERTS_RAW: Concert[] = [
   { artist: 'These New Puritans', venue: 'Bitterzoet', date: '2025-11-03' },
+  { artist: 'Beethoven – Piano Concerto No. 5 (Emperor) & Brahms – Symphony No. 1', venue: 'Concertgebouw', date: '2025-09-20' },
   { artist: 'Milan W.', venue: 'Cinetol', date: '2025-06-02' },
   { artist: 'Brian Jonestown Massacre', venue: 'Melkweg', date: '2025-05-21' },
   { artist: 'Karel', venue: 'Paradiso', date: '2025-01-11' },

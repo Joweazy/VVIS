@@ -1,4 +1,4 @@
-<div *ngIf="vvisPlaylist$ | async as vvis">
+<div *ngIf="vvisPlaylist$ | async as vvis; else playlistSkeleton" class="fade-in">
     <div class="card mb-3 playlist-card">
         <div class="row g-0">
             <div class="col-12 col-sm-4 col-md-3">
@@ -17,16 +17,24 @@
     </div>
 </div>
 
+<ng-template #playlistSkeleton>
+    <div class="skeleton skeleton-card mb-3"></div>
+</ng-template>
+
 <div *ngIf="vvisTracks$ | async as tracks; else loading;" class="table-container">
     <div class="export-controls mb-3">
-        <button class="btn btn-primary me-2" (click)="exportToCSV(tracks)" title="Export to CSV">
+        <!-- <button class="btn btn-primary me-2" (click)="exportToCSV(tracks)" title="Export to CSV">
             <i class="bi bi-download me-1"></i>Export CSV
         </button>
         <button class="btn btn-secondary" (click)="exportToJSON(tracks)" title="Export to JSON">
             <i class="bi bi-download me-1"></i>Export JSON
+        </button> -->
+        <button class="btn btn-outline-secondary mobile-sort-btn ms-2" (click)="toggleDateSort()" title="Sort by date added">
+            <i class="bi bi-calendar-event me-1"></i>Sort by Added Date
+            <i class="bi" [ngClass]="dateSortOrder === 1 ? 'bi-sort-up-alt' : 'bi-sort-down'"></i>
         </button>
     </div>
-    <p-table [value]="tracks" [columns]="cols" [reorderableColumns]="true" 
+    <p-table #dt [value]="tracks" [columns]="cols" [reorderableColumns]="true" 
         [scrollable]="true" scrollHeight="calc(100vh - 250px)" [virtualScroll]="true" [virtualScrollItemSize]="50"
         styleClass="p-datatable-striped p-datatable-gridlines" [responsiveLayout]="'scroll'">
         <ng-template pTemplate="header" let-columns>
@@ -61,9 +69,13 @@
 
 <!-- TODO move to separate component and add to stats component -->
 <ng-template #loading>
-    <h5 class=" mt-5 text-center">Loading tracks...</h5>
-    <div class="progress" *ngIf="loadPercentage$ | async as percentage">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
-        aria-valuemin="0" aria-valuemax="100" [style.width]="percentage + '%'"></div>
+    <div class="fade-in">
+        <h5 class="mt-5 text-center">Loading tracks...</h5>
+        <div class="progress" *ngIf="loadPercentage$ | async as percentage" style="max-width: 600px; margin: 0 auto;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" 
+            aria-valuemin="0" aria-valuemax="100" [style.width]="percentage + '%'">
+                {{percentage}}%
+            </div>
+        </div>
     </div>
 </ng-template>

@@ -1,3 +1,58 @@
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.fade-in-delay {
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+/* Skeleton Loader */
+.skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  max-width: 700px;
+  height: 200px;
+  margin-bottom: 1rem;
+}
+
 /* Spotify Button Styling */
 .spotify-btn {
   display: inline-flex;
@@ -30,6 +85,7 @@
   max-width: 700px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .playlist-card:hover {
@@ -40,6 +96,11 @@
   object-fit: cover;
   height: 100%;
   min-height: 150px;
+  transition: opacity 0.3s ease;
+}
+
+.playlist-image:not([src]) {
+  opacity: 0;
 }
 
 /* Table Container */
@@ -48,6 +109,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 /* Album Image in Table */
@@ -57,11 +119,15 @@
   object-fit: cover;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
 .album-image:hover {
   transform: scale(1.1);
+}
+
+.album-image:not([src]) {
+  opacity: 0;
 }
 
 /* Drag Handle Styling */
@@ -87,10 +153,14 @@
 }
 
 /* Row Hover Effect */
+::ng-deep .table-row {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
 ::ng-deep .table-row:hover {
   background-color: rgba(0, 123, 255, 0.05) !important;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transform: translateX(2px);
 }
 
 /* Column Widths */
@@ -166,10 +236,21 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile Sort Button - Hidden on desktop */
+.mobile-sort-btn {
+  display: none;
+}
+
 /* Responsive Breakpoints */
 @media screen and (max-width: 992px) {
   .hide-tablet {
     display: none !important;
+  }
+  
+  /* Show the mobile sort button on tablet and below */
+  .mobile-sort-btn {
+    display: inline-flex;
+    align-items: center;
   }
   
   .title-column,
@@ -209,6 +290,10 @@
   
   .drag-handle-column {
     width: 2rem;
+  }
+
+  .skeleton-card {
+    height: 180px;
   }
 }
 
