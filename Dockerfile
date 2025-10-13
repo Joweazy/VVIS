@@ -23,6 +23,6 @@ COPY --from=angular-build /app/client/dist/vvis.client/browser ./wwwroot
 
 # Set environment to production
 ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
 
-# Use shell form to allow environment variable expansion at runtime
-CMD dotnet VVIS.Server.dll --urls "http://0.0.0.0:${PORT:-8080}"
+ENTRYPOINT ["dotnet", "VVIS.Server.dll"]
