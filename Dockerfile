@@ -23,6 +23,5 @@ COPY --from=angular-build /app/client/dist/vvis.client/browser ./wwwroot
 
 # Set environment to production
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS=http://0.0.0.0:$PORT
 
 ENTRYPOINT ["dotnet", "VVIS.Server.dll"]
